@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileEditorComponent } from './profile-editor.component';
+import { ObservableMapDemoComponent } from './observable-map-demo.component';
 
 describe('ProfileEditorComponent', () => {
-  let component: ProfileEditorComponent;
-  let fixture: ComponentFixture<ProfileEditorComponent>;
+  let component: ObservableMapDemoComponent;
+  let fixture: ComponentFixture<ObservableMapDemoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileEditorComponent ]
+      declarations: [ ObservableMapDemoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileEditorComponent);
+    fixture = TestBed.createComponent(ObservableMapDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

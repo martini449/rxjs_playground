@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import { ObservableMapDemoComponent } from './observable-map-demo/observable-map-demo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileEditorComponent
+    ObservableMapDemoComponent
   ],
   imports: [
     BrowserModule,

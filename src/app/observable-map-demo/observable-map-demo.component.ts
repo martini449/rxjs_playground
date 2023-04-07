@@ -5,10 +5,10 @@ import { DummyHttpClientService } from '../dummy-http-client.service';
 
 @Component({
   selector: 'app-profile-editor',
-  templateUrl: './profile-editor.component.html',
-  styleUrls: ['./profile-editor.component.scss'],
+  templateUrl: './observable-map-demo.component.html',
+  styleUrls: ['.//observable-map-demo.component.scss'],
 })
-export class ProfileEditorComponent implements OnInit {
+export class ObservableMapDemoComponent implements OnInit {
   mergeMapForm = new FormGroup({
     input1: new FormControl(''),
   });
