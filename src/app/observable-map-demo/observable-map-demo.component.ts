@@ -10,16 +10,16 @@ import { DummyHttpClientService } from '../dummy-http-client.service';
 })
 export class ObservableMapDemoComponent implements OnInit {
   mergeMapForm = new FormGroup({
-    input1: new FormControl(''),
+    mergeMap: new FormControl(''),
   });
   concatMapForm = new FormGroup({
-    input2: new FormControl(''),
+    concatMap: new FormControl(''),
   });
   switchMapForm = new FormGroup({
-    input3: new FormControl(''),
+    switchMap: new FormControl(''),
   });
   exhaustMapForm = new FormGroup({
-    input4: new FormControl(''),
+    exhaustMap: new FormControl(''),
   });
   events: string[] = [];
   constructor(private dummyHttpClient: DummyHttpClientService) {}
