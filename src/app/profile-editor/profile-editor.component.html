@@ -1,0 +1,27 @@
+<form style="display: flex; flex-direction: column" [formGroup]="mergeMapForm">
+  <label>
+    This form simulates requests for poor network conditions. Type fast and see
+    what happens in dev tools.
+  </label>
+
+  <label for="input1"> mergeMap</label>
+  <input id="input1" type="text" formControlName="input1" />
+</form>
+
+<form style="display: flex; flex-direction: column" [formGroup]="concatMapForm">
+  <label for="input1">concatMap</label>
+  <input id="input1" type="text" formControlName="input1" />
+</form>
+
+<form style="display: flex; flex-direction: column" [formGroup]="switchMapForm">
+  <label for="input1">switchMap</label>
+  <input id="input1" type="text" formControlName="input1" />
+</form>
+
+<form
+  style="display: flex; flex-direction: column"
+  [formGroup]="exhaustMapForm"
+>
+  <label for="input1">exhaustMap</label>
+  <input id="input1" type="text" formControlName="input1" />
+</form>
