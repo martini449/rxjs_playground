@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { concatMap, exhaustMap, mergeMap, switchMap } from 'rxjs';
+import { Observable, concatMap, exhaustMap, merge, mergeMap, switchMap } from 'rxjs';
 import { DummyHttpClientService } from '../dummy-http-client.service';
 
 @Component({
@@ -21,24 +21,23 @@ export class ObservableMapDemoComponent implements OnInit {
   exhaustMapForm = new FormGroup({
     input4: new FormControl(''),
   });
-
+  events: string[] = [];
   constructor(private dummyHttpClient: DummyHttpClientService) {}
 
   ngOnInit(): void {
-    this.mergeMapForm.valueChanges
-      .pipe(mergeMap((values) => this.dummyHttpClient.post(values)))
-      .subscribe((values) => console.warn(`mergeMap`, values));
-
-    this.concatMapForm.valueChanges
-      .pipe(concatMap((values) => this.dummyHttpClient.post(values)))
-      .subscribe((values) => console.warn(`concatMap`, values));
-
-    this.switchMapForm.valueChanges
-      .pipe(switchMap((values) => this.dummyHttpClient.post(values)))
-      .subscribe((values) => console.warn(`switchMap`, values));
-
-    this.exhaustMapForm.valueChanges
-      .pipe(exhaustMap((values) => this.dummyHttpClient.post(values)))
-      .subscribe((values) => console.warn(`exhaustMap`, values));
+    merge(
+      this.mergeMapForm.valueChanges.pipe(
+        mergeMap((values) => this.dummyHttpClient.post(values))
+      ),
+      this.concatMapForm.valueChanges.pipe(
+        concatMap((values) => this.dummyHttpClient.post(values))
+      ),
+      this.switchMapForm.valueChanges.pipe(
+        switchMap((values) => this.dummyHttpClient.post(values))
+      ),
+      this.exhaustMapForm.valueChanges.pipe(
+        exhaustMap((values) => this.dummyHttpClient.post(values))
+      )
+    ).subscribe(event => this.events.push(event))
   }
 }
