@@ -13,13 +13,13 @@ export class ObservableMapDemoComponent implements OnInit {
     input1: new FormControl(''),
   });
   concatMapForm = new FormGroup({
-    input1: new FormControl(''),
+    input2: new FormControl(''),
   });
   switchMapForm = new FormGroup({
-    input1: new FormControl(''),
+    input3: new FormControl(''),
   });
   exhaustMapForm = new FormGroup({
-    input1: new FormControl(''),
+    input4: new FormControl(''),
   });
 
   constructor(private dummyHttpClient: DummyHttpClientService) {}

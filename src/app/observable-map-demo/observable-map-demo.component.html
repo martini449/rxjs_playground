@@ -1,27 +1,34 @@
-<form style="display: flex; flex-direction: column" [formGroup]="mergeMapForm">
-  <label>
+  <h1>
+    mergeMap / concatMap /switchMap / exhaustMap
+  </h1>
+  <h2>
     This form simulates requests for poor network conditions. Type fast and see
     what happens in dev tools.
-  </label>
+  </h2>
+    <form [formGroup]="mergeMapForm">
+      <mat-form-field>
+        <mat-label for="input1"> mergeMap</mat-label>
+        <input matInput id="input1" type="text" formControlName="input1" />
+      </mat-form-field>
+    </form>
 
-  <label for="input1"> mergeMap</label>
-  <input id="input1" type="text" formControlName="input1" />
-</form>
+    <form [formGroup]="concatMapForm">
+      <mat-form-field>
+        <mat-label for="input2">concatMap</mat-label>
+        <input matInput id="input2" type="text" formControlName="input2" />
+      </mat-form-field>
+    </form>
 
-<form style="display: flex; flex-direction: column" [formGroup]="concatMapForm">
-  <label for="input1">concatMap</label>
-  <input id="input1" type="text" formControlName="input1" />
-</form>
+    <form [formGroup]="switchMapForm">
+      <mat-form-field>
+        <mat-label for="input3">switchMap</mat-label>
+        <input matInput id="input3" type="text" formControlName="input3" />
+      </mat-form-field>
+    </form>
 
-<form style="display: flex; flex-direction: column" [formGroup]="switchMapForm">
-  <label for="input1">switchMap</label>
-  <input id="input1" type="text" formControlName="input1" />
-</form>
-
-<form
-  style="display: flex; flex-direction: column"
-  [formGroup]="exhaustMapForm"
->
-  <label for="input1">exhaustMap</label>
-  <input id="input1" type="text" formControlName="input1" />
-</form>
+    <form [formGroup]="exhaustMapForm">
+      <mat-form-field>
+        <mat-label for="input4">exhaustMap</mat-label>
+        <input matInput id="input4" type="text" formControlName="input4" />
+      </mat-form-field>
+    </form>
