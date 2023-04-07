@@ -4,9 +4,9 @@ import { concatMap, exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { DummyHttpClientService } from '../dummy-http-client.service';
 
 @Component({
-  selector: 'app-profile-editor',
+  selector: 'app-observable-map-demo',
   templateUrl: './observable-map-demo.component.html',
-  styleUrls: ['.//observable-map-demo.component.scss'],
+  styleUrls: ['./observable-map-demo.component.scss'],
 })
 export class ObservableMapDemoComponent implements OnInit {
   mergeMapForm = new FormGroup({

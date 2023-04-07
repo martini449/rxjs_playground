@@ -8,6 +8,6 @@ export class DummyHttpClientService {
   constructor() {}
 
   post(values: any): Observable<any> {
-    return of(values).pipe(delay(Math.random() * 1000));
+    return of(values).pipe(delay(Math.random() * 4000));
   }
 }
