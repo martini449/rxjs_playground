@@ -2,8 +2,7 @@
   mergeMap / concatMap /switchMap / exhaustMap
 </h2>
 <h3>
-  This form simulates requests with random delays (0-4s). Type fast and see
-  what happens below.
+  This form simulates requests with random delays (0-4s). Type something.
 </h3>
 <form [formGroup]="mergeMapForm">
   <mat-form-field>
@@ -33,7 +32,44 @@
   </mat-form-field>
 </form>
 
-
-<div *ngFor="let event of events">
-  {{event | json}}
+<div class="events">
+  <div class="event" *ngFor="let event of events; index as i;">
+    {{i+1}}. {{event | json}}
+  </div>
 </div>
+
+<mat-divider></mat-divider>
+
+<h2>Practical examples</h2>
+<h3>(exhaustMap) Disabled button while there is an active request. Click the button many times.</h3>
+<button class="exhaustedButton" mat-flat-button (click)="showcaseExhaust()">
+  <ng-container *ngIf="loading, else notExhaustedButton">
+    <mat-spinner [diameter]="14"></mat-spinner>I'm exhausted, don't bother me!
+  </ng-container>
+  <ng-template #notExhaustedButton>
+    Click me!
+  </ng-template>
+</button>
+
+<mat-divider></mat-divider>
+
+<h3>(switchMap) Cancel (unsubscribe) from an active request upon input value change (network tab).</h3>
+<input matInput [formControl]="searchInput" placeholder="Type something">
+
+<mat-divider></mat-divider>
+
+<h3>(concatMap) Save form drafts synchronously (console.log).</h3>
+<form [formGroup]="concatMapFormDraft">
+  <mat-form-field>
+    <mat-label for="input1">input1</mat-label>
+    <input matInput id="input1" type="text" formControlName="input1" />
+  </mat-form-field>  
+  <mat-form-field>
+    <mat-label for="input2">input2</mat-label>
+    <input matInput id="input2" type="text" formControlName="input2" />
+  </mat-form-field>  
+  <mat-form-field>
+    <mat-label for="input3">input3</mat-label>
+    <input matInput id="input3" type="text" formControlName="input3" />
+  </mat-form-field>
+</form>

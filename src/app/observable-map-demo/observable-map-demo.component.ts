@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, concatMap, exhaustMap, merge, mergeMap, switchMap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  Subject,
+  concatMap,
+  exhaustMap,
+  merge,
+  mergeMap,
+  switchMap,
+} from 'rxjs';
 import { DummyHttpClientService } from '../dummy-http-client.service';
+import { SwapiServiceService } from '../swapi-service.service';
 
 @Component({
   selector: 'app-observable-map-demo',
@@ -22,7 +31,20 @@ export class ObservableMapDemoComponent implements OnInit {
     exhaustMap: new FormControl(''),
   });
   events: string[] = [];
-  constructor(private dummyHttpClient: DummyHttpClientService) {}
+  loading: boolean = false;
+  clickEvent: Subject<any> = new Subject();
+  searchInput = new FormControl('');
+  concatMapFormDraft = new FormGroup({
+    input1: new FormControl(''),
+    input2: new FormControl(''),
+    input3: new FormControl(''),
+  });
+
+  constructor(
+    private dummyHttpClient: DummyHttpClientService,
+    private snackBar: MatSnackBar,
+    private swapiService: SwapiServiceService
+  ) {}
 
   ngOnInit(): void {
     merge(
@@ -38,6 +60,32 @@ export class ObservableMapDemoComponent implements OnInit {
       this.exhaustMapForm.valueChanges.pipe(
         exhaustMap((values) => this.dummyHttpClient.post(values))
       )
-    ).subscribe(event => this.events.push(event))
+    ).subscribe((event) => {
+      return this.events.push(event);
+    });
+
+    this.clickEvent
+      .pipe(
+        exhaustMap((values) => {
+          this.loading = true;
+          this.snackBar.open('Click NOT ignored!', 'Close', {
+            duration: 500,
+          });
+          return this.dummyHttpClient.post(values);
+        })
+      )
+      .subscribe(() => (this.loading = false));
+
+    this.searchInput.valueChanges
+      .pipe(switchMap((phrase) => this.swapiService.search(phrase)))
+      .subscribe();
+
+    this.concatMapFormDraft.valueChanges
+      .pipe(concatMap((values) => this.dummyHttpClient.post(values)))
+      .subscribe((draft) => console.log(`draft saved for:`, draft));
+  }
+
+  showcaseExhaust() {
+    this.clickEvent.next({ exhaustClick: 'clicked' });
   }
 }
